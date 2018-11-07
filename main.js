@@ -1,5 +1,7 @@
 //CLASSES
 
+import { soma } from './funcoes';
+
 class User {
     constructor(email, password) {
         this.email = email;
@@ -139,3 +141,5 @@ const usuario5 = {
 };
 
 console.log({ usuario5 });
+
+console.log(soma(3, 4));
