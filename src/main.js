@@ -150,3 +150,15 @@ console.log(ClasseUsuario);
 ClasseUsuario.info();
 
 console.log(IdadeUsuario);
+
+const mypromise = () => new Promise((resolve, reject) => {
+    setTimeout(() => { resolve('OK') }, 2000);
+});
+
+async function execPromise(){
+    const response = await mypromise();
+
+    console.log(response);
+}
+
+execPromise();
