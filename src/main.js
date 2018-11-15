@@ -1,6 +1,7 @@
 //CLASSES
 
 //import sum ,{subt, mult}  from '../funcoes';
+import axios from 'axios';
 
 class User {
     constructor(email, password) {
@@ -162,3 +163,11 @@ async function execPromise(){
 }
 
 execPromise();
+
+class Api {
+     static async getUserInfo(username){
+         const response = await axios.get(`https://api.github/users/${username}`);
+         console.log(response);
+     }
+}
+getUserInfo('jaum97');
