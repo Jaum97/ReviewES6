@@ -156,7 +156,7 @@ const mypromise = () => new Promise((resolve, reject) => {
     setTimeout(() => { resolve('OK') }, 2000);
 });
 
-async function execPromise(){
+async function execPromise() {
     const response = await mypromise();
 
     console.log(response);
@@ -165,9 +165,71 @@ async function execPromise(){
 execPromise();
 
 class Api {
-     static async getUserInfo(username){
-         const response = await axios.get(`https://api.github/users/${username}`);
-         console.log(response);
-     }
+    static async getUserInfo(username) {
+        const response = await axios.get(`https://api.github/users/${username}`);
+        console.log(response);
+    }
 }
 getUserInfo('jaum97');
+
+
+// Transform then to async / await
+
+// Funão delay aciona o .then após 1s
+const delay = () => new Promise(resolve => setTimeout(resolve, 1000));
+function umPorSegundo() {
+    delay().then(() => {
+        console.log('1s');
+        delay().then(() => {
+            console.log('2s');
+            delay().then(() => {
+                console.log('3s');
+            });
+        })
+    });
+}
+umPorSegundo();
+
+const withasync = async () => {
+    await delay();
+    console.log('1s');
+    await delay();
+    console.log('2s');
+    await delay();
+    console.log('3s');
+}
+withasync();
+
+const getUserFromGithub = async (user) => {
+    try {
+        const respo = await axios.get(`https://api.github.com/users/${user}`)
+        console.log(respo.data);
+    } catch (err) {
+        console.log('Usuário não existe');
+    }
+}
+getUserFromGithub('diego3g');
+getUserFromGithub('diego3g124123');
+
+class Github {
+    static async getRepositories(repo) {
+        try {
+            const respp = await axios.get(`https://api.github.com/repos/${repo}`);
+            console.log(respp.data);
+        } catch (err) {
+            console.log('Repositório não existe');
+        }
+    }
+}
+Github.getRepositories('rocketseat/rocketseat.com.br');
+Github.getRepositories('rocketseat/dslkvmskv');
+
+const buscaUsuario = async usuario => {
+    try {
+        const resposta1 = await axios.get(`https://api.github.com/users/${user}`)
+        console.log(resposta1.data);
+    } catch (err) {
+        console.log('Usuário não existe');
+    }
+}
+buscaUsuario('diego3g');
